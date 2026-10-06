@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Kebun Sayur Ceria</title>
+<style>
+:root{--ink:#1d2b3a;--white:#fff;--green:#2fb457;--orange:#ff8a3d;--red:#ef476f;--blue:#1c9fe6;--yellow:#ffd23f;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none}
+html,body{height:100%;margin:0;background:#173d1f;font-family:'Baloo 2','Fredoka','Nunito','Trebuchet MS','Comic Sans MS',system-ui,sans-serif;font-weight:800;color:var(--ink);overflow:hidden}
+body{display:flex;align-items:center;justify-content:center}
+#st{position:relative;overflow:hidden;background:linear-gradient(#6fd0ff 0%,#c9f0ff 55%,#fff6c9 100%);box-shadow:0 0 30px #0008}
+#bg{position:absolute;inset:0;pointer-events:none}
+.sun{position:absolute;top:1.2em;right:1.2em;font-size:4em;animation:spin 30s linear infinite}
+.cl{position:absolute;font-size:3.4em;opacity:.9;animation:drift 22s linear infinite}
+.hill{position:absolute;left:-10%;right:-10%;bottom:-6em;height:13em;background:#7ddc5b;border-radius:50% 50% 0 0;border-top:.4em solid #5cc23f}
+.hill.b{bottom:-8em;background:#4fbf4a;left:20%;right:-40%}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes drift{from{transform:translateX(-5em)}to{transform:translateX(26em)}}
+#app{position:absolute;inset:0;overflow-y:auto;padding:.8em .9em 3.2em;display:flex;flex-direction:column}
+.scr{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.6em}
+.big{font-size:6em;line-height:1;animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-.15em) rotate(-4deg)}}
+h1{font-size:2.5em;line-height:1;margin:0;color:#fff;-webkit-text-stroke:.07em #1f7a35;paint-order:stroke fill;text-shadow:0 .08em 0 #1f7a35}
+h2{font-size:1.7em;margin:0;line-height:1.1}
+p{margin:0;font-size:1.05em}
+.badge{background:#fff;border-radius:1em;padding:.6em 1em;border:.15em solid var(--ink)}
+.btn{font:inherit;font-size:1.5em;color:#fff;background:var(--green);border:0;border-radius:1em;padding:.5em 1.6em;min-height:2.6em;box-shadow:0 .25em 0 #1c7d3a;cursor:pointer;transition:transform .08s}
+.btn:active{transform:translateY(.18em);box-shadow:0 .07em 0 #1c7d3a}
+.btn.o{background:var(--orange);box-shadow:0 .25em 0 #c75f14}
+.hd{display:flex;align-items:center;gap:.5em;font-size:.95em;margin-bottom:.5em}
+.pill{background:#fff;border:.13em solid var(--ink);border-radius:2em;padding:.15em .7em;white-space:nowrap}
+.bar{flex:1;height:1.1em;background:#fff;border:.13em solid var(--ink);border-radius:1em;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#ffd23f,#ff8a3d);transition:width .4s}
+.ic{font:inherit;font-size:1.3em;width:2em;height:2em;border-radius:50%;border:.1em solid var(--ink);background:#fff;cursor:pointer}
+.card{background:#fff;border:.18em solid var(--ink);border-radius:1.2em;padding:.7em .9em;text-align:center;box-shadow:0 .25em 0 #0003;position:relative}
+.card .em{font-size:3em;line-height:1.1;animation:bob 2s ease-in-out infinite}
+.card .q{font-size:1.12em;line-height:1.25;margin-top:.2em}
+.spk{position:absolute;top:.4em;right:.4em;font-size:1em}
+.opts{display:grid;gap:.55em;margin-top:.7em}
+.op{font:inherit;font-size:1.08em;text-align:left;color:var(--ink);background:#fff;border:.17em solid var(--c);border-radius:1em;min-height:2.9em;padding:.4em .7em;display:flex;align-items:center;gap:.6em;cursor:pointer;box-shadow:0 .2em 0 var(--c);line-height:1.15}
+.op b{flex:none;width:1.9em;height:1.9em;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center}
+.op:active{transform:translateY(.15em)}
+.op.ok{background:#b8f5c6;border-color:#12a53f;box-shadow:0 .2em 0 #12a53f;animation:pop .4s}
+.op.no{background:#ffc6d0;border-color:#d62855;box-shadow:0 .2em 0 #d62855;animation:shake .4s}
+.op.dim{opacity:.55}
+@keyframes pop{50%{transform:scale(1.05)}}
+@keyframes shake{25%{transform:translateX(-.4em)}75%{transform:translateX(.4em)}}
+#sheet{position:absolute;left:.7em;right:.7em;bottom:2.4em;background:#fff;border:.18em solid var(--ink);border-radius:1.2em;padding:.6em .8em;display:flex;align-items:center;gap:.6em;box-shadow:0 .3em 0 #0004;animation:up .3s}
+#sheet .m{font-size:2.6em;line-height:1}
+#sheet .t{flex:1;font-size:1.05em;line-height:1.15}
+#sheet .btn{font-size:1.1em;padding:.4em .9em;min-height:2.4em}
+@keyframes up{from{transform:translateY(5em);opacity:0}}
+#wm{position:absolute;left:50%;bottom:.5em;transform:translateX(-50%);background:#ffffffd9;border-radius:2em;padding:.1em .9em;font-size:.8em;color:#1d2b3a;z-index:5;pointer-events:none;white-space:nowrap}
+.cf{position:absolute;top:-2em;font-size:1.8em;pointer-events:none;animation:fall 1.7s ease-in forwards;z-index:9}
+@keyframes fall{to{transform:translateY(42em) rotate(540deg);opacity:0}}
+.stars{font-size:3em;letter-spacing:.05em}
+.row{display:flex;justify-content:space-between;gap:.6em;width:100%;font-size:.95em;padding:.2em .2em;border-bottom:.1em dashed #0003}
+.list{background:#fff;border:.15em solid var(--ink);border-radius:1em;padding:.4em .8em;width:100%}
+</style>
+</head>
+<body>
+<div id="st">
+  <div id="bg"><div class="sun">☀️</div><div class="cl" style="top:5em">☁️</div><div class="cl" style="top:11em;animation-delay:-11s;font-size:2.4em">☁️</div><div class="hill"></div><div class="hill b"></div></div>
+  <div id="app"></div>
+  <div id="wm">🌱 Riski Hermawan</div>
+</div>
+<script>
+const SEC=[
+{n:'A',t:'Mengenal Sayuran',e:'🥕',tip:'Kenali warna dan bentuk sayur. Satu sayur: "It is ..." Banyak sayur: "They are ...". Spinach tetap memakai "is".'},
+{n:'B',t:'Suka & Tidak Suka',e:'💚',tip:'Pakai "I like ..." untuk suka dan "I don\'t like ..." untuk tidak suka. Jawaban singkat: "Yes, I do." atau "No, I don\'t."'},
+{n:'C',t:'Too & Either',e:'🤝',tip:'Setuju pada kalimat positif pakai "too". Setuju pada kalimat negatif pakai "either".'},
+{n:'D',t:'Membaca: Little Red Hen',e:'🐔',tip:'Ingat cerita Little Red Hen 🐔 dan teman-temannya Goat 🐐 dan Duck 🦆. Baca soal dengan teliti ya!'},
+{n:'E',t:'Ayo Praktik!',e:'⭐',tip:'Saatnya memakai semua yang sudah kamu pelajari: mendeskripsikan sayur, menyatakan suka, dan bertanya.'}];
+const Q=[
+[0,'🥕','Rina is holding a vegetable. It is long, orange, and crunchy.\nWhat vegetable is she holding?',['spinach','carrot','cabbage','potato']],
+[0,'🌿','Read the description:\n“It is green and leafy.”\nWhich vegetable matches the description?',['spinach','carrot','potato','eggplant']],
+[0,'🥔','Potato is usually ....',['long and orange','green and leafy','brown and round','white and curly']],
+[0,'🤍','Which sentence correctly describes a cauliflower?',['It is brown and round.','It is white and curly.','It is orange and crunchy.','It is green and leafy.']],
+[0,'🥒','Read the clues:\n“It is green, long, and thin.”\nWhich vegetable is it?',['snake beans','potatoes','peas','cauliflower']],
+[0,'🍆','Read the clues:\n“It is long and purple or green.”\nThe vegetable is ....',['broccoli','spinach','eggplant','carrot']],
+[0,'🥕','Which sentence is grammatically correct?',['Carrots is long and orange.','Carrot are long and orange.','Carrots are long and orange.','Carrots am long and orange.']],
+[0,'🌿','Which sentence correctly describes spinach?',['Spinach are green and leafy.','Spinach is green and leafy.','Spinach am green and leafy.','Spinach is brown and round.']],
+[1,'😋','Bima likes spinach. What should he say?',['I don\'t like spinach.','I likes spinach.','I like spinach.','I am like spinach.']],
+[1,'🙅','Sinta does not like cabbage. Which sentence is correct?',['I don\'t like cabbage.','I doesn\'t like cabbage.','I not like cabbage.','I don\'t likes cabbage.']],
+[1,'💬','Read the conversation:\nA: What vegetable do you like?\nB: ....\nWhich answer is the most appropriate?',['Yes, I do.','I like carrots.','No, I don\'t.','It is orange.']],
+[1,'🌱','Read the conversation:\nA: Do you like bean sprouts?\nB: Yes, ....',['I am','I do','I like','I don\'t']],
+[1,'🌶️','Read the conversation:\nA: Do you like chilies?\nB: No, ....',['I do','I am','I don\'t','I doesn\'t']],
+[1,'❤️','Look at the information:\nDina: ❤️ carrots\nDina: ❌ cabbage\nWhich sentence is TRUE?',['Dina doesn\'t like carrots.','Dina likes cabbage.','Dina likes carrots.','Dina likes all vegetables.']],
+[1,'🌽','Andi says:\n“I like corn because it is sweet.”\nWhy does Andi like corn?',['Because it is green.','Because it is sweet.','Because it is bitter.','Because it is crunchy.']],
+[2,'🥦','Rani says: “I like broccoli.”\nSiti also likes broccoli. What should Siti say?',['I don\'t like broccoli, either.','I like broccoli, too.','I like broccoli, either.','I doesn\'t like broccoli, too.']],
+[2,'🌶️','Dodi says: “I don\'t like chilies.”\nRaka also doesn\'t like chilies. What should Raka say?',['I like chilies, too.','I don\'t like chilies, too.','I don\'t like chilies, either.','I doesn\'t like chilies, either.']],
+[2,'👍','Which sentence uses too correctly?',['I don\'t like cabbage, too.','I like spinach, too.','I doesn\'t like corn, too.','I don\'t likes carrots, too.']],
+[2,'👎','Which sentence uses either correctly?',['I like potatoes, either.','I don\'t like potatoes, either.','I likes potatoes, either.','I am not like potatoes, either.']],
+[3,'🐔','What did Little Red Hen have?',['Carrot, potato, and corn seeds','Bean sprout, snake bean, and spinach seeds','Cabbage, lettuce, and pumpkin seeds','Broccoli, cauliflower, and peas']],
+[3,'🐐🦆','Why did Goat and Duck not help Little Red Hen?',['They were sleeping.','They did not have seeds.','They did not like the vegetables.','They did not know how to plant.']],
+[3,'🍲','What did Little Red Hen make from the vegetables?',['Soup','Salad','Pecel','Fried rice']],
+[3,'💡','What can we learn from the story?',['We should only work when we get food.','We should help others and take responsibility.','We should not eat vegetables.','We should never work together.']],
+[3,'🧼','What did they do before eating the pecel?',['They planted seeds.','They cooked vegetables.','They washed their hands.','They went to the garden.']],
+[4,'🥕','Your friend asks: “What vegetable do you like?”\nYou like carrots because they are crunchy. What is the best answer?',['I like carrots because they are crunchy.','I don\'t like carrots because they are crunchy.','Carrots are brown and round.','Yes, I do carrots.']],
+[4,'🥦','Read the information:\nVegetable: Broccoli\nColor: Green\nShape: Curly\nTaste: Bitter\nWhich sentence is NOT correct?',['Broccoli is green.','Broccoli is curly.','Broccoli is bitter.','Broccoli is orange.']],
+[4,'🥕','Your teacher asks you to describe a carrot. Which answer is the BEST?',['Carrots are long and crunchy. They are orange.','Carrots is green and leafy.','Carrot don\'t like cabbage.','I like carrots, either.']],
+[4,'💬','Read the dialogue:\nFajar: I like spinach.\nRudi: I like spinach, too.\nFajar: I don\'t like chilies.\nRudi: __________.\nWhich sentence completes the dialogue correctly?',['I like chilies, too.','I don\'t like chilies, either.','I likes chilies, too.','I don\'t likes chilies, either.']],
+[4,'🥬','Sarah wants to know whether her friend likes cabbage. Which question should she ask?',['What cabbage do you like?','Do you like cabbage?','Why cabbage are green?','Is cabbage like you?']],
+[4,'🎤','Read the student\'s presentation:\n“My favorite vegetable is carrot. Carrots are long and crunchy. They are orange. I like carrots because they are delicious and healthy.”\nWhat is the main purpose of the presentation?',['To tell how to cook carrots','To describe and express a preference for carrots','To tell a story about carrots','To ask someone to buy carrots']]
+];
+const KEY='BACBACCBCA'+'BBCCBBCBBB'+'CCBCADABBB';
+const V={spinach:'🌿',carrot:'🥕',cabbage:'🥬',potato:'🥔',potatoes:'🥔',eggplant:'🍆','snake beans':'🥒',peas:'🟢',cauliflower:'🤍',broccoli:'🥦'};
+const COL=['#ff8a3d','#2fb457','#8a5cf6','#1c9fe6'];
+const OKM=['Hore! Benar sekali! 🎉','Pintar! Sayurnya panen! 🥕','Kamu hebat! ⭐','Mantap! Lanjutkan! 💪'];
+const NOM=['Ups! Tidak apa-apa, ayo coba lagi di soal berikutnya!','Hampir! Perhatikan jawaban hijau ya.','Jangan menyerah, kamu pasti bisa!'];
+const $=s=>document.querySelector(s),app=$('#app'),st=$('#st');
+let g=0,score=0,streak=0,lock=false,musicOn=true,secOk=[0,0,0,0,0],best=0;
+const ranges=SEC.map((_,s)=>Q.map((q,i)=>q[0]==s?i:-1).filter(i=>i>=0));
+try{best=+localStorage.getItem('ksc_best')||0}catch(e){}
+function fit(){const w=Math.min(innerWidth,innerHeight*9/16);st.style.width=w+'px';st.style.height=innerHeight+'px';st.style.fontSize=w/20+'px'}
+addEventListener('resize',fit);fit();
+const set=h=>{app.innerHTML=h;app.scrollTop=0};
+const stars=n=>'⭐'.repeat(n)+'☆'.repeat(3-n);
+/* ---------- AUDIO ---------- */
+let AC,master,mg,step=0,nextT=0;
+const fq=n=>440*Math.pow(2,(n-9)/12);
+function tone(f,t,d,type,v,dest){const o=AC.createOscillator(),x=AC.createGain();o.type=type;o.frequency.value=f;x.gain.setValueAtTime(.0001,t);x.gain.linearRampToValueAtTime(v,t+.015);x.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(x);x.connect(dest||master);o.start(t);o.stop(t+d+.05)}
+const MEL=[19,,16,19,21,19,16,,24,,21,19,16,19,21,,17,,21,24,21,17,19,21,19,23,26,23,19,,14,,];
+const BASS=[-12,-15,-19,-17];
+function sched(){while(nextT<AC.currentTime+.4){const s=step%32,bar=Math.floor(s/8),t=nextT;
+ const m=MEL[s];if(m!==undefined)tone(fq(m+(s%8==0?0:0)),t,.2,'triangle',.5,mg);
+ if(s%8==0||s%8==4)tone(fq(BASS[bar]),t,.4,'sine',.9,mg);
+ if(s%2==0)tone(fq(BASS[bar]+(s%4?19:12)+12),t,.12,'square',.07,mg);
+ if(s%4==2)tone(5000,t,.04,'square',.04,mg);
+ step++;nextT+=.2}}
+function initAudio(){if(AC){AC.resume();return}
+ try{AC=new(window.AudioContext||window.webkitAudioContext)();const c=AC.createDynamicsCompressor();master=AC.createGain();master.gain.value=1;mg=AC.createGain();mg.gain.value=musicOn?.75:0;mg.connect(master);master.connect(c);c.connect(AC.destination);nextT=AC.currentTime+.1;setInterval(sched,100)}catch(e){}}
+function sfx(k){if(!AC)return;const t=AC.currentTime;
+ if(k=='ok')[72,76,79,84].forEach((n,i)=>tone(fq(n-60),t+i*.09,.25,'triangle',.8));
+ if(k=='no'){tone(220,t,.25,'sawtooth',.4);tone(165,t+.18,.35,'sawtooth',.4)}
+ if(k=='tap')tone(900,t,.08,'square',.25);
+ if(k=='win')[72,76,79,84,79,84,88].forEach((n,i)=>tone(fq(n-60),t+i*.13,.3,'triangle',.9))}
+function toggleM(){musicOn=!musicOn;initAudio();if(mg)mg.gain.value=musicOn?.75:0;const b=$('#mb');if(b)b.textContent=musicOn?'🔊':'🔇'}
+function speak(i){try{speechSynthesis.cancel();const q=Q[i];const u=new SpeechSynthesisUtterance(q[2].replace(/[❤️❌]/g,'')+'. '+q[3].join('. '));u.lang='en-US';u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function confetti(){const e=['🥕','🥦','🌽','🍆','⭐','🎉','🥬','🌶️'];for(let i=0;i<22;i++){const s=document.createElement('span');s.className='cf';s.textContent=e[i%e.length];s.style.left=Math.random()*95+'%';s.style.animationDelay=Math.random()*.4+'s';st.appendChild(s);setTimeout(()=>s.remove(),2300)}}
+/* ---------- SCREENS ---------- */
+function home(){set(`<div class="scr"><div class="big">🥕🥦🌽</div><h1>Kebun Sayur<br>Ceria!</h1><div class="badge"><h2>Bahasa Inggris Kelas 6</h2><p>Healthy Vegetables 🥗</p></div><div class="big" style="font-size:5em">🐰</div><button class="btn" onclick="start()">▶ MAIN</button><p class="pill" style="background:#fff">🏆 Skor terbaik: ${best}</p></div>`)}
+function start(){initAudio();sfx('tap');try{(document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen).call(document.documentElement)}catch(e){}
+ score=0;streak=0;secOk=[0,0,0,0,0];intro(0)}
+function intro(s){const S=SEC[s];set(`<div class="scr"><p class="pill">Level ${s+1} dari 5</p><div class="big">${S.e}</div><h1>${S.t}</h1><div class="badge"><p>💡 <b>Tips:</b> ${S.tip}</p></div><p class="pill" style="background:#fff">Ada ${ranges[s].length} soal</p><button class="btn o" onclick="sfx('tap');quiz(${s},0)">SIAP! 🚀</button></div>`)}
+function quiz(s,n){const gi=ranges[s][n],q=Q[gi];g=gi;lock=false;
+ const pct=gi/Q.length*100;
+ set(`<div class="hd"><span class="pill">Lv.${s+1} • ${n+1}/${ranges[s].length}</span><div class="bar"><i style="width:${pct}%"></i></div><span class="pill">⭐ ${score}</span><button class="ic" id="mb" onclick="toggleM()">${musicOn?'🔊':'🔇'}</button></div>
+ <p style="text-align:center;margin-bottom:.4em;font-size:.9em">Pilih jawaban yang paling tepat! 👇</p>
+ <div class="card"><button class="ic spk" onclick="speak(${gi})">🗣️</button><div class="em">${q[1]}</div><div class="q">${q[2].replace(/\n/g,'<br>')}</div></div>
+ <div class="opts">${q[3].map((o,i)=>`<button class="op" style="--c:${COL[i]}" onclick="ans(${s},${n},${i})"><b>${'ABCD'[i]}</b><span>${V[o]?V[o]+' ':''}${o}</span></button>`).join('')}</div><div style="height:6em;flex:none"></div>`)}
+function ans(s,n,i){if(lock)return;lock=true;const k='ABCD'.indexOf(KEY[g]),ok=i==k,ops=document.querySelectorAll('.op');
+ ops.forEach((b,j)=>{if(j==k)b.classList.add('ok');else if(j==i)b.classList.add('no');else b.classList.add('dim')});
+ if(ok){streak++;score+=100+Math.min(streak-1,5)*10;secOk[s]++;sfx('ok');confetti()}else{streak=0;sfx('no')}
+ const last=n==ranges[s].length-1,msg=ok?OKM[g%4]+(streak>2?` Beruntun ${streak}x! 🔥`:''):NOM[g%3];
+ const d=document.createElement('div');d.id='sheet';
+ d.innerHTML=`<div class="m">${ok?'🐰':'🥺'}</div><div class="t">${msg}</div><button class="btn o" onclick="nxt(${s},${n})">${last?'Selesai ✓':'Lanjut ▶'}</button>`;
+ st.appendChild(d);document.querySelector('.pill:nth-of-type(2)');}
+function nxt(s,n){const d=$('#sheet');if(d)d.remove();sfx('tap');
+ if(n+1<ranges[s].length)quiz(s,n+1);else secEnd(s)}
+function secEnd(s){const t=ranges[s].length,c=secOk[s],p=c/t,n=p>=.9?3:p>=.65?2:p>=.4?1:0;sfx('win');confetti();
+ set(`<div class="scr"><div class="big">🧺</div><h2>Level ${s+1} Selesai!</h2><div class="stars">${stars(n)}</div><div class="badge"><h2>${c} dari ${t} benar</h2><p>Kamu memanen ${c} sayur 🥕</p></div><p class="pill" style="background:#fff">⭐ Skor: ${score}</p><button class="btn" onclick="sfx('tap');${s<4?`intro(${s+1})`:'final()'}">${s<4?'Level Berikutnya ▶':'Lihat Hasil 🏆'}</button></div>`)}
+function final(){const tot=secOk.reduce((a,b)=>a+b,0),p=tot/Q.length,n=p>=.9?3:p>=.7?2:p>=.5?1:0;
+ if(score>best){best=score;try{localStorage.setItem('ksc_best',best)}catch(e){}}
+ const title=n==3?'Juara Petani Sayur! 👑':n==2?'Petani Hebat! 🌟':n==1?'Petani Rajin! 🌱':'Ayo Berlatih Lagi! 💪';
+ sfx('win');confetti();
+ set(`<div class="scr"><div class="big">🏆</div><h1>${title}</h1><div class="stars">${stars(n)}</div><div class="badge"><h2>Skor ${score}</h2><p>${tot} dari ${Q.length} soal benar (${Math.round(p*100)}%)</p></div><div class="list">${SEC.map((x,i)=>`<div class="row"><span>${x.e} ${x.t}</span><span>${secOk[i]}/${ranges[i].length}</span></div>`).join('')}</div><button class="btn" onclick="start()">🔄 Main Lagi</button></div>`)}
+home();
+</script>
+</body>
+</html>
